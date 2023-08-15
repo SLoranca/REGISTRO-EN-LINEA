@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+    string _genero = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>REGISTRO EXITOSO</title>
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+</head>
+<body class="container bg-white">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <img src="~/Content/img/escudo-chiapas.jpeg" class="text-center" style="padding:15px;" />
+                <h4>Secretaría de Economía y del Trabajo</h4>
+            </div>
+
+            @if (ViewBag.status == "OK")
+            {
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h3>¡FELICIDADES!</h3>
+                                    <p>Nos complace informarte que tu registro ha sido procesado de manera exitosa. Presenta este numero de folio para corroborar tu asistencia.</p>
+                                </div>
+                                <div class="card-body">
+                                    <table width="100%">
+
+                                        @if (ViewBag.genero == "M")
+                                        {
+                                            _genero = "MUJER";
+                                        }
+                                        else if (ViewBag.genero == "H")
+                                        {
+                                            _genero = "HOMBRE";
+                                        }
+                                        else
+                                        {
+                                            _genero = "PREFIRO NO DECIRLO";
+                                        }
+
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <strong>NOMBRE COMPLETO: </strong><span>@ViewBag.nombre_completo</span>
+                                                    <br />
+                                                    <strong>EDAD: </strong><span>@ViewBag.edad</span>
+                                                    <br />
+                                                    <strong>CURP: </strong><span>@ViewBag.curp</span>
+                                                    <br />
+                                                    <strong>GENERO: </strong><span>@_genero</span>
+                                                    <br />
+                                                    <strong>TELEFONO: </strong><span>@ViewBag.telefono</span>
+                                                    <br />
+                                                    <strong>CORREO: </strong><span>@ViewBag.correo</span>
+                                                    <br />
+                                                    <strong>TIPO: </strong><span>@ViewBag.tipo</span>
+                                                </td>
+                                                <td colspan="6" class="text-center">
+                                                    <h1>No.FOLIO</h1>
+                                                    <h1 style="color:red;">@ViewBag.folio</h1>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <span class="text-uppercase">@ViewBag.message</span>
+                </div>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

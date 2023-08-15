@@ -1,0 +1,44 @@
+//
+// Content
+//
+
+// Base
+.content {
+	// Main card
+	> .card.card-page {
+		background-color: $page-card-bg;
+	}
+}
+
+// Desktop mode
+@include media-breakpoint-up(lg) {
+	.content {
+		padding: 0;
+
+		// Main card
+		> .card {
+			> .card-body {
+				padding: get($content-spacing, desktop);
+			}
+		}
+		
+		// Aside enabled
+		.aside-enabled & {			
+			padding-left: get($content-spacing, desktop);
+		}
+	}
+}
+
+// Tablet & mobile modes
+@include media-breakpoint-down(lg) {
+	.content {
+		padding: 0;
+
+		// Main card
+		> .card {
+			> .card-body {
+				padding: get($content-spacing, tablet-and-mobile);
+			}
+		}
+	}
+}

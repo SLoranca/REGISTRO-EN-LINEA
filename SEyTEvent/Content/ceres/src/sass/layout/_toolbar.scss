@@ -1,0 +1,25 @@
+//
+// Toolbar
+//
+
+// General
+.toolbar {
+    display: flex;
+    align-items: center;
+
+    // Search
+    .search {
+        .form-control {
+            background-color: rgba($white, 0.03);
+            border: 1px solid rgba($white, 0.12);
+
+            @include placeholder(rgba($white, 0.75));
+            color: $white;
+        }
+    }
+
+    // Custom button
+    .btn.btn-custom  {       
+        background-color: rgba($white, 0.1);
+    }
+}

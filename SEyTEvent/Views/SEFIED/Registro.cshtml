@@ -1,0 +1,48 @@
+﻿@using System.Web.Configuration;
+@{
+    ViewBag.Title = "REGISTRO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var form = WebConfigurationManager.AppSettings["Form"].ToString();
+}
+
+@if (form == "COMPLETO")
+{
+    @Html.Partial("_PartialViewRegistroCompleto")
+
+    @Html.Partial("_PartialViewTablasEnviarCorreo")
+    
+    @section Scripts{
+        <script src="~/Content/js/cat.js"></script>
+        <script src="~/Content/js/registro_completo.js"></script>
+        <script src="~/Content/js/tablasSendEmail.js"></script>
+        <script type="text/javascript">
+            var urlCatMunicipio = "@Url.Action("GetMunicipios", "Catalogos")";
+            var urlCatConferencias = "@Url.Action("GetConferencias", "Catalogos")";
+            var urlCatTalleres = "@Url.Action("GetTalleres", "Catalogos")";
+            var urlObtInfoParticipante = "@Url.Action("GetParticipanteInfo", "Participantes")";
+            var urlRegistroCompleto = "@Url.Action("RegistoCompleto", "Participantes")";
+            var urlCheckConferencia = "@Url.Action("ParticipanteConferenciaAdd", "Programas")";
+            var urlCheckTaller = "@Url.Action("ParticipanteTallerAdd", "Programas")";
+            var urlEnviarCorreo = "@Url.Action("EnviarCorreo", "Participantes")";
+            var urlGetRegistroParticipanteConferencia = "@Url.Action("ParticipanteConferenciaRegistroGet", "Programas")";
+            var urlGetRegistroParticipanteTaller = "@Url.Action("ParticipanteTallerRegistroGet", "Programas")";
+            document.onreadystatechange = function () {
+                if (document.readyState == "complete") {
+                    initForms();
+                }
+            }
+        </script>
+    }
+}
+else
+{
+    @Html.Partial("_PartialViewRegistroRapido")
+
+    @section Scripts{
+        <script src="~/Content/js/registro_rapido.js"></script>
+        <script type="text/javascript">
+            var urlRegistroRapido = "@Url.Action("RegistoRapido", "Participantes")";
+        </script>
+    }
+}
