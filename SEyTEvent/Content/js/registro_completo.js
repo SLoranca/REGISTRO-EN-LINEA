@@ -1,14 +1,4 @@
-﻿btnContinuar.onclick = function (event) { init_registro(); }
-
-btnRegistrar.onclick = function (event) { concluir_registro(); }
-
-btnRegresar.onclick = function (event) {
-    document.getElementById("btnRegresar").classList.add("hide");
-    document.getElementById("btnRegistrar").classList.add("hide");
-    document.getElementById("btnContinuar").classList.remove("hide");
-    document.getElementById("content-programas").classList.add("hide");
-    document.getElementById("content-registro").classList.remove("hide");
-}
+﻿btnRegistrar.onclick = function (event) { registrar(); }
 
 addEventListener('resize', () => {
     if (innerWidth < 900) {
@@ -94,15 +84,15 @@ function checkTaller(data) {
 function init_registro() {
     if (!$("#frmRegistroCompleto").valid()) { return false; }
 
-    if (!curp_valido) {
-        tools.mensajeError("La CURP es invalida, revisela cuidadosamente");
-        return false;
-    }
+    //if (!curp_valido) {
+    //    tools.mensajeError("La CURP es invalida, revisela cuidadosamente");
+    //    return false;
+    //}
 
-    if (!rfc_valido) {
-        tools.mensajeError("El RFC es invalido, reviselo cuidadosamente");
-        return false;
-    }
+    //if (!rfc_valido) {
+    //    tools.mensajeError("El RFC es invalido, reviselo cuidadosamente");
+    //    return false;
+    //}
 
     if (document.getElementById("cboMunicipioFormComp").value === "0") {
         tools.mensajeError("Seleccione el municipio al que pertenece");
@@ -161,6 +151,77 @@ function init_registro() {
     });
 }
 
+function registrar() {
+    if (!$("#frmRegistroCompleto").valid()) { return false; }
+
+    //if (curp_valido.length > 0) {
+    //    if (!curp_valido) {
+    //        tools.mensajeError("La CURP es invalida, revisela cuidadosamente");
+    //        return false;
+    //    }
+    //} else {
+    //    document.getElementById("txtCurpFormComp").value = 'N/D';
+    //}
+    
+
+    //if (!rfc_valido) {
+    //    tools.mensajeError("El RFC es invalido, reviselo cuidadosamente");
+    //    return false;
+    //}
+
+    if (document.getElementById("cboMunicipioFormComp").value === "0") {
+        tools.mensajeError("Seleccione el municipio al que pertenece");
+        return false;
+    }
+
+    if (document.getElementById("cboGeneroFormComp").value === "SEL") {
+        tools.mensajeError("Seleccione su Género");
+        return false;
+    }
+
+    if (document.getElementById("cboIdentifiqueFormComp").value === "SEL") {
+        tools.mensajeError("Seleccione la opción a convenir");
+        return false;
+    }
+
+    if (document.getElementById("cboDiscapacidadFormComp").value === "SEL") {
+        tools.mensajeError("Seleccione si cuenta con alguna discapacidad");
+        return false;
+    }
+
+    ajax.async = false;
+    ajax.serialize = false;
+    ajax.parametros = {
+        id: 0,
+        muncipio_id: document.getElementById("cboMunicipioFormComp").value,
+        nombre_completo: document.getElementById("txtNombreFormComp").value,
+        edad: document.getElementById("txtEdadFormComp").value,
+        curp: document.getElementById("txtCurpFormComp_").value,
+        correo: document.getElementById("txtCorreoFormComp").value,
+        telefono: document.getElementById("txtTelefonoFormComp").value,
+        genero: document.getElementById("cboGeneroFormComp").value,
+        tipo: document.getElementById("cboIdentifiqueFormComp").value,
+        discapacidad: document.getElementById("cboDiscapacidadFormComp").value,
+        nombre_empresa: document.getElementById("txtNombreComercial").value,
+        actividad: document.getElementById("txtActividad").value,
+        rfc: document.getElementById("txtRFC").value,
+        comentarios: document.getElementById("txtComentario").value,
+        folio: _app.select.folio,
+        no_evento: _app.no_evento,
+        nombre_evento: _app.nombre_evento,
+        mode: _app.select.mode
+    };
+    ajax.send(urlRegistroCompleto, function (response) {
+        if (response.status === "OK") {
+            _app.select.folio = response.data;
+            _app.select.mode = "UPDATE";
+            get_programas(_app.select.folio);
+            concluir_registro();
+        }
+        else { tools.mensajeError(response.message); }
+    });
+}
+
 function concluir_registro() {
     swal.fire({
         title: '¿Toda su información esta correcta?, Se enviará un mensaje a su correo al finalizar su registro.',
@@ -211,14 +272,12 @@ $(function () {
         rules: {
             nombre_completo_form_comp: { required: true },
             edad_form_comp: { required: true },
-            curp_form_comp: { required: true, minlength: 18, maxlength: 18 },
             correo_form_comp: { required: true },
             telefono_form_comp: { required: true }
         },
         messages: {
             nombre_completo_form_comp: { required: "*Este campo es obligatorio" },
             edad_form_comp: { required: "*Este campo es obligatorio" },
-            curp_form_comp: { required: "*Este campo es obligatorio", minlength: "*El mínimo de caracteres debe ser de 18", maxlength: "* El máximo de caracteres debe ser de 18" },
             correo_form_comp: { required: "*Este campo es obligatorio" },
             telefono_form_comp: { required: "*Este campo es obligatorio", minlength: "*El mínimo de caracteres debe ser de 10", maxlength: "* El máximo de caracteres debe ser de 10" }
         }

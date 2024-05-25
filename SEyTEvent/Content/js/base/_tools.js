@@ -1,4 +1,4 @@
-﻿let curp_valido = false;
+﻿let curp_valido = true;
 let rfc_valido = true;
 let array_conf = [];
 let array_talleres = [];

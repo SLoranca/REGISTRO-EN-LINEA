@@ -1,9 +1,9 @@
-﻿@media (min-width: 992px) {
+﻿/*@media (min-width: 992px) {
     .header-fixed[data-kt-sticky-header=on] .header {
-        background-color: #423f3f !important;
-        color:whitesmoke !important;
+        background-color: #D7DCE1 !important;
+        color: whitesmoke !important;
     }
-}
+}*/
 
 .hide {
     display: none !important;
@@ -45,7 +45,6 @@
 .footer-height {
     padding-top: 4rem !important;
     padding-bottom: 3rem !important;
-    background-color: #423f3f !important;
 }
 
 .text-seyt {
@@ -57,7 +56,7 @@
 }
 
 #kt_footer_2 {
-    background-color: #000000E6;
+    background-color: #F7F8FA;
 }
 
 .btn-primary {

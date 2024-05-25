@@ -11,7 +11,7 @@
     @Html.Partial("_PartialViewRegistroCompleto")
 
     @Html.Partial("_PartialViewTablasEnviarCorreo")
-    
+
     @section Scripts{
         <script src="~/Content/js/cat.js"></script>
         <script src="~/Content/js/registro_completo.js"></script>
@@ -35,7 +35,7 @@
         </script>
     }
 }
-else
+else if (form == "RAPIDO")
 {
     @Html.Partial("_PartialViewRegistroRapido")
 
@@ -43,6 +43,22 @@ else
         <script src="~/Content/js/registro_rapido.js"></script>
         <script type="text/javascript">
             var urlRegistroRapido = "@Url.Action("RegistoRapido", "Participantes")";
+        </script>
+    }
+}
+else
+{
+    @Html.Partial("_PartialViewPanel")
+
+    @section Scripts{
+        <script src="~/Content/js/panel_admin.js"></script>
+        <script type="text/javascript">
+            var urlPanelAdmin = "@Url.Action("GetPanelAdmin", "Participantes")";
+            document.onreadystatechange = function () {
+                if (document.readyState == "complete") {
+                    load_panel();
+                }
+            }
         </script>
     }
 }

@@ -31,13 +31,14 @@
                                         <input class="inputClear form-control numbers" placeholder="Edad" type="text" autocomplete="off" name="edad_form_comp" id="txtEdadFormComp" maxlength="3" />
                                     </div>
                                 </div>
-                                <div class="row mb-8">
-                                    <div class="resize col-8">
-                                        <label class="required form-label">CURP:</label>
-                                        <input class="inputClear form-control letter_and_numbers text-uppercase" oninput="validarInputCURP(this);" onkeyup="_toUppercase(this);" autocomplete="off" placeholder="CURP" type="text" name="curp_form_comp" id="txtCurpFormComp" maxlength="18" />
-                                        <pre id="resultado-curp"></pre>
+                                <div class="row mb-6">
+                                    <div class="resize col-6">
+                                        <label class=" form-label">CURP:</label>
+                                        <span class="badge badge-info fa-pull-right">OPCIONAL</span>
+                                        <input class="inputClear form-control letter_and_numbers text-uppercase" oninput="validarInputCURP(this);" onkeyup="_toUppercase(this);" autocomplete="off" placeholder="CURP" type="text" name="curp_form_comp_" id="txtCurpFormComp_" maxlength="18" />
+                                        <pre id="resultado-curp" style="background-color:forestgreen;"></pre>
                                     </div>
-                                    <div class="resize col-4">
+                                    <div class="resize col-6">
                                         <label class="required form-label">Municipio al que perteneces:</label>
                                         <select class="form-control" name="municipio" id="cboMunicipioFormComp">
                                         </select>
@@ -77,7 +78,7 @@
                                         <select class="form-control cboRegCompleto" name="discapacidad" id="cboDiscapacidadFormComp">
                                             <option selected value="SEL">[SELECCIONE]</option>
                                             <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
+                                            <option value="NO" selected>NO</option>
                                         </select>
                                     </div>
                                 </div>
@@ -198,8 +199,8 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-12">
-                    <button class="btn btn-primary fa-pull-right" id="btnContinuar">Continuar <i class="fa fa-arrow-right"></i></button>
-                    <button class="btn btn-primary fa-pull-right hide" id="btnRegistrar">Concluir Registro <i class="fa fa-check"></i></button>
+                    <button class="btn btn-primary fa-pull-right hide " id="btnContinuar">Continuar <i class="fa fa-arrow-right"></i></button>
+                    <button class="btn btn-primary fa-pull-right " id="btnRegistrar">Concluir Registro <i class="fa fa-check"></i></button>
                     <button class="btn btn-secondary fa-pull-right hide mr-5" id="btnRegresar"><i class="fa fa-arrow-left"></i> Regresar</button>
                 </div>
             </div>

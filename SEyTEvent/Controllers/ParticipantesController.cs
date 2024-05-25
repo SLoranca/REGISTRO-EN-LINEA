@@ -14,6 +14,13 @@ namespace SEyTEvent.Controllers
             return Json(result);
         }
 
+        public JsonResult GetPanelAdmin()
+        {
+            Participantes participantes = new Participantes();
+            Response result = participantes.panel_get_info();
+            return Json(result);
+        }
+
         public JsonResult RegistoCompleto(ModelParticipante model, string folio, string mode, string no_evento, string nombre_evento)
         {
             Response response = new Response();
@@ -181,10 +188,11 @@ namespace SEyTEvent.Controllers
             {
                 if (tblTalleres == "" || tblTalleres == null)
                 {
-                    response.status = "ERROR";
-                    response.data = null;
-                    response.message = "No se encontro el body de la tabla talleres";
-                    return Json(response);
+                    //response.status = "ERROR";
+                    //response.data = null;
+                    //response.message = "No se encontro el body de la tabla talleres";
+                    //return Json(response);
+                    tblTalleres = " ";
                 }
 
                 if (folio == "" || folio == null)

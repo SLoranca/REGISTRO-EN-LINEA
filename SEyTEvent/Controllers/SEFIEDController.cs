@@ -16,6 +16,7 @@ namespace SEyTEvent.Controllers
         {
             Participantes participantes = new Participantes();
             Response result = participantes.participante_get_info(folio);
+
             ModelParticipanteInfo model = new ModelParticipanteInfo();
 
             model = JsonConvert.DeserializeObject<ModelParticipanteInfo>(result.data);

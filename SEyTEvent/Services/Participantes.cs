@@ -276,5 +276,29 @@ namespace SEyTEvent.Services
             }
             return result;
         }
+
+        public Response panel_get_info()
+        {
+            Response result = new Response();
+            DbContext ctx = new DbContext();
+            IDbConnection cnn = ctx.Get();
+
+            try
+            {
+                var registro = Dapper.SqlMapper.Query<dynamic>(cnn, "panel_admin", null, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                result.status = "OK";
+                result.data = JsonConvert.SerializeObject(registro);
+            }
+            catch (Exception e)
+            {
+                result.status = "ERROR";
+                result.message = e.Message.ToString();
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return result;
+        }
     }
 }
